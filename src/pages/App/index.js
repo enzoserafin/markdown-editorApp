@@ -18,14 +18,25 @@ import('highlight.js').then((hljs) => {
 class App extends Component {
   constructor() {
     super()
-    this.state = { value: '' }
+    this.state = {
+      value: '',
+      isSaving: false,
+    }
 
     this.handleChange = (e) => {
-      this.setState({ value: e.target.value })
+      this.setState({ value: e.target.value, isSaving: true })
     }
 
     this.handleSave = (value) => {
-      localStorage.setItem('md', this.state.value)
+      if (this.state.isSaving) {
+        localStorage.setItem('md', this.state.value)
+        this.setState({ isSaving: false })
+      }
+    }
+
+    this.handleRemove = () => {
+      localStorage.removeItem('md')
+      this.setState({ value: '' })
     }
 
     this.getMarkup = () => {
@@ -34,17 +45,26 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('Executou o componente didfuckingmout')
     const value = localStorage.getItem('md')
-    this.setState({ value })
+    this.setState({ value: value || '' })
+  }
+
+  componentDidUpdate() {
+    clearInterval(this.timer)
+    this.timer = setTimeout(this.handleSave, 300)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer)
   }
 
   render() {
     return (
       <MarkDownEditor
         value={this.state.value}
+        isSaving={this.state.isSaving}
         handleChange={this.handleChange}
-        handleSave={this.handleSave}
+        handleRemove={this.handleRemove}
         getMarkup={this.getMarkup}
       />
     )

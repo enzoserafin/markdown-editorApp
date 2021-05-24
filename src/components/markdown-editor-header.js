@@ -1,14 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Header = ({ onSave }) => (
+const Header = ({ isSaving, handleRemove }) => (
     <header className='editor-header'>
-        <button onClick={onSave} className='save'>Salvar</button>
+        <p className='save-message'>
+            {isSaving ? 'Salvando...' : 'Salvo!'}
+        </p>
+
+        <button onClick={handleRemove} className='button-remove'>Remover</button>
     </header>
 )
 
-Header.ropTypes = {
-    handleSave: PropTypes.func.isRequired,
+Header.propTypes = {
+    isSaving: PropTypes.bool.isRequired,
+    handleRemove: PropTypes.func.isRequired,
 }
 
 export default Header

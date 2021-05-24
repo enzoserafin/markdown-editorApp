@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import marked from 'marked'
-import MarkDownEditor from '../../components/markdown-editor'
+import MarkDownEditor from '../../components/markdown-editor/index'
 
 import './style.css'
 
@@ -39,6 +39,15 @@ class App extends Component {
       this.setState({ value: '' })
     }
 
+    this.handleCreate = () => {
+      this.setState({ value: '' })
+      this.textarea.focus()
+    }
+
+    this.textareaRef = (node) => {
+      this.textarea = node
+    }
+
     this.getMarkup = () => {
       return { __html: marked(this.state.value) }
     }
@@ -65,7 +74,9 @@ class App extends Component {
         isSaving={this.state.isSaving}
         handleChange={this.handleChange}
         handleRemove={this.handleRemove}
+        handleCreate={this.handleCreate}
         getMarkup={this.getMarkup}
+        textareaRef={this.textareaRef}
       />
     )
   }

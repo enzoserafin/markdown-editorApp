@@ -1,22 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Button from '../button/index'
+
 const Header = ({ isSaving, handleRemove, handleCreate }) => (
     <header className='editor-header'>
-        <p className='save-message'>
+        {isSaving !== null && <p className='save-message'>
             {isSaving ? 'Salvando...' : 'Salvo!'}
-        </p>
+        </p>}
 
-        <button onClick={handleCreate}>
+        <Button onClick={handleCreate} kind='success'>
             Criar novo
-        </button>
+        </Button>
 
-        <button onClick={handleRemove} className='button-remove'>Remover</button>
+        <Button onClick={handleRemove} kind='danger'>
+            Remover
+        </Button>
     </header>
 )
 
 Header.propTypes = {
-    isSaving: PropTypes.bool.isRequired,
+    isSaving: PropTypes.bool,
     handleRemove: PropTypes.func.isRequired,
     handleCreate: PropTypes.func.isRequired,
 }

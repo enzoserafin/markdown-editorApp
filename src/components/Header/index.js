@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '../button/index'
-import SaveMessage from '../save-message'
+import Button from '../Button'
+import SaveMessage from '../Save-Message'
 
 const Header = ({ isSaving, handleRemove, handleCreate }) => (
     <header className='editor-header'>

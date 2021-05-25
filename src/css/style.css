@@ -44,8 +44,8 @@
   textarea,
   .view {
     height: calc(100% - 40px);
-    min-width: 50%;
-    max-width: 50%;
+    min-width: 40%;
+    max-width: 40%;
   }
   
   textarea {
@@ -61,8 +61,13 @@
   .view {
     background: #333;
     color: #fff;
-    display: flex;
     font-family: sans-serif;
     overflow: auto;
     padding: 10px;
+  }
+
+  .files-list-container {
+    background: #fc0;
+    min-width: 20%;
+    max-width: 20%;
   }

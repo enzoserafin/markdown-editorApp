@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './save-message.css'
 
 const SaveMessage = ({ isSaving }) => (
     isSaving !== null && (
